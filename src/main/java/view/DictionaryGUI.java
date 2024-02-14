@@ -39,38 +39,38 @@ public class DictionaryGUI extends Application {
         searchPane.setMargin(searchButton, insets);
         addPane.setMargin(addField, insets);
         addPane.setMargin(addMeaningField, insets);
+        addPane.setMargin(addButton, insets);
 
         result.setMinWidth(50);
         result.setAlignment(Pos.CENTER);
+        result.setPadding(insets);
 
         searchPane.getChildren().add(searchField);
         searchPane.getChildren().add(searchButton);
         addPane.getChildren().add(addField);
         addPane.getChildren().add(addMeaningField);
         addPane.getChildren().add(addButton);
-        searchPane.getChildren().add(result);
         VBox layout = new VBox();
-        layout.getChildren().addAll(searchPane, addPane);
+        layout.getChildren().addAll(searchPane, addPane, result);
 
         Scene scene = new Scene(layout, 300, 200);
         stage.setScene(scene);
         stage.show();
         searchButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                try {
+                if (searchField.getText().isEmpty()) {
+                    result.setText("Search field is empty");
+                } else {
                     controller.searchWord();
-                    if (result.getText().equals("Word not found")) {
-                        throw new Exception();
-                    }
-                } catch (Exception e) {
-                    result.setText("Word not found");
                 }
             }
         });
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                if (addField.getText().equals("") || addMeaningField.getText().equals("")) {
-                    result.setText("Please enter a word and its meaning");
+                if (addField.getText().isEmpty()) {
+                    result.setText("Word field is empty");
+                } else if (addMeaningField.getText().isEmpty()) {
+                    result.setText("Meaning field is empty");
                 } else {
                     controller.addWord();
                 }
