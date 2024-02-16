@@ -35,6 +35,8 @@ public class Converter {
         currencies.add(new Currency("Euro", "EUR", 1.0));
         currencies.add(new Currency("US Dollar", "USD", 1.08));
         currencies.add(new Currency("British Pound", "GBP", 0.86));
+        currencies.add(new Currency("Japanese Yen", "JPY", 116.95));
+        currencies.add(new Currency("Swedish Krona", "SEK", 11.24));
     }
 
     public List<String> getCurrencyNames() {
