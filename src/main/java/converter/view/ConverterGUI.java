@@ -29,6 +29,7 @@ public class ConverterGUI extends Application {
     private TilePane conversion = new TilePane();
     private TextField currencyAmount = new TextField();
     private Label currencyResult = new Label();
+
     public void start(Stage stage) {
         top.setAlignment(Pos.CENTER);
         top.setSpacing(50);
@@ -60,17 +61,21 @@ public class ConverterGUI extends Application {
         convertButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent actionEvent) {
                 try {
-                    if (currencyAmount.getText().isEmpty()) {
+                    if (currencyAmount.getText().isEmpty()) { // how to check that the input only contains numbers?     a:
                         throw new Exception();
                     }
-                double amount = Double.parseDouble(currencyAmount.getText());
-                String from = currencyFrom.getValue();
-                String to = currencyTo.getValue();
-                controller.convert(amount, from, to);
-            }
-            catch (Exception e) {
-                currencyResult.setText("Amount field is empty!");
-            }
+                } catch (Exception e) {
+                    currencyResult.setText("Amount field is empty!");
+                }
+
+                try {
+                    double amount = Double.parseDouble(currencyAmount.getText());
+                    String from = currencyFrom.getValue();
+                    String to = currencyTo.getValue();
+                    controller.convert(amount, from, to);
+                } catch (NumberFormatException e) {
+                    currencyResult.setText("Invalid input!");
+                }
             }
         });
 
