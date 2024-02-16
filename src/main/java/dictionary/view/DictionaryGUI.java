@@ -1,6 +1,6 @@
-package Dictionary.view;
+package dictionary.view;
 
-import Dictionary.controller.DictionaryController;
+import dictionary.controller.DictionaryController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.VBox;
@@ -31,7 +31,7 @@ public class DictionaryGUI extends Application {
         FlowPane searchPane = new FlowPane();
         FlowPane addPane = new FlowPane();
 
-        stage.setTitle("Dictionary");
+        stage.setTitle("dictionary");
 
         Insets insets = new Insets(10, 10, 10, 10);
         searchPane.setMargin(searchField, insets);
