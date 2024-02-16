@@ -1,7 +1,6 @@
-package view;
+package Dictionary.view;
 
-import controller.DictionaryController;
-
+import Dictionary.controller.DictionaryController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.VBox;

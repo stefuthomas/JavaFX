@@ -1,7 +1,7 @@
-package controller;
+package Dictionary.controller;
 
-import view.DictionaryGUI;
-import model.Dictionary;
+import Dictionary.view.DictionaryGUI;
+import Dictionary.model.Dictionary;
 
 public class DictionaryController {
     private DictionaryGUI gui;
