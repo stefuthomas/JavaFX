@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class ConverterGUI extends Application {
 
     public void start(Stage stage) {
         top.setAlignment(Pos.CENTER);
-        top.setSpacing(50);
+        top.setSpacing(25);
 
         controller.passCurrencyNamesToGui();
 
@@ -40,7 +41,8 @@ public class ConverterGUI extends Application {
         BorderPane.setMargin(top, new Insets(10, 10, 10, 10));
 
         conversion.setAlignment(Pos.CENTER);
-
+        conversion.setHgap(10);
+        conversion.getChildren().add(new Label("Amount :"));
         currencyAmount.setPromptText("Input amount");
         currencyResult.setText("Nothing yet...");
 
@@ -53,7 +55,8 @@ public class ConverterGUI extends Application {
         layout.setCenter(conversion);
         BorderPane.setMargin(conversion, new Insets(10, 10, 10, 10));
 
-        Scene scene = new Scene(layout);
+        Scene scene = new Scene(layout, 1000, 400);
+        scene.getStylesheets().add("style.css");
         stage.setTitle("Currency Converter");
         stage.setScene(scene);
         stage.show();
@@ -61,7 +64,7 @@ public class ConverterGUI extends Application {
         convertButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent actionEvent) {
                 try {
-                    if (currencyAmount.getText().isEmpty()) { // how to check that the input only contains numbers?     a:
+                    if (currencyAmount.getText().isEmpty()) {
                         throw new Exception();
                     }
                 } catch (Exception e) {
@@ -83,11 +86,13 @@ public class ConverterGUI extends Application {
     }
 
     public void setCurrencyNames(List<String> currencyNames) {
+        Label fromLabel = new Label("Select currency from :");
+        Label toLabel = new Label("Select currency to :");
         currencyFrom.setItems(FXCollections.observableArrayList(currencyNames));
         currencyTo.setItems(FXCollections.observableArrayList(currencyNames));
         currencyFrom.setValue(currencyNames.get(0));
         currencyTo.setValue(currencyNames.get(1));
-        top.getChildren().addAll(currencyFrom, currencyTo);
+        top.getChildren().addAll(fromLabel, currencyFrom, toLabel, currencyTo);
 
     }
 
