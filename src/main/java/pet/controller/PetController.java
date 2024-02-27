@@ -7,11 +7,11 @@ import pet.view.PetView;
 public class PetController {
     private PetView gui;
     private Pet pet;
-
     public PetController(PetView gui) {
         this.pet = new Pet(0,0);
         this.gui = gui;
     }
+
     public int getPetX() {
         return pet.getX();
     }
@@ -27,12 +27,16 @@ public class PetController {
             } catch (InterruptedException e) {}
 
             Platform.runLater(() -> {
-                pet.move(x, y);
+                if (x >= 1 && x <= gui.getCanvasWidth() - pet.getWidth()) {
+                    if (y >= 1 && y <= gui.getCanvasHeight() - pet.getHeight()) {
+                        pet.move(x, y);
+                    }
+                }
+
                 gui.updateCanvas(pet.getX(), pet.getY());
             });
         }).start();
     }
-
     public Pet getPet() {
         return pet;
     }

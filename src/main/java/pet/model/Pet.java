@@ -18,10 +18,8 @@ public class Pet {
     }
 
     public void move(int x, int y) {
-        if (y >= 1 && y <= 550)
-            this.y = y;
-        if (x >= 1 && x <= 550)
-            this.x = x;
+        this.x = x;
+        this.y = y;
     }
     public int getX() {
         return x;

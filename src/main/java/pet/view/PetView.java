@@ -15,12 +15,12 @@ public class PetView extends Application {
     private PetController controller;
     public void start(Stage primaryStage) {
         controller = new PetController(this);
-        canvas = new Canvas(600, 600);
+        canvas = new Canvas(400, 400);
         gc = canvas.getGraphicsContext2D();
 
         StackPane root = new StackPane();
         root.getChildren().add(canvas);
-        Scene scene = new Scene(root, canvas.getWidth(), canvas.getHeight());
+        Scene scene = new Scene(root, 600, 600);
 
         canvas.setOnMouseMoved(event -> {
             controller.movePet((int) event.getX(), (int) event.getY());
@@ -39,5 +39,13 @@ public class PetView extends Application {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         gc.drawImage(controller.getPet().getImage(), petX, petY, controller.getPet().getWidth(), controller.getPet().getHeight());
+    }
+
+    public int getCanvasWidth() {
+        return (int) canvas.getWidth();
+    }
+
+    public int getCanvasHeight() {
+        return (int) canvas.getHeight();
     }
 }
