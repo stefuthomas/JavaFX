@@ -8,7 +8,6 @@ public class Pet {
     private final int height = 50;
     private Image image = new Image("file:src/main/resources/pet.png");
     private ImageView petImage;
-
     public Pet(int x, int y) {
         this.x = x;
         this.y = y;
@@ -35,11 +34,6 @@ public class Pet {
     public int getHeight() {
         return height;
     }
-
-    public ImageView getPetImage() {
-        return petImage;
-    }
-
     public Image getImage() {
         return image;
     }
